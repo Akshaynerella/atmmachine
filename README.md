@@ -1,2 +1,2 @@
 # atmmachine
- lol
+ code for atm machine using c
