@@ -122,6 +122,7 @@ int moneywithdrawl(int balance)
 		balance = balance - withdrawl;
 		printf("\n\nsuccessful");
 		printf("\n\navailable balance in your account is:rs%d\n",balance);
+		return balance;
 	}
 	else
 	{
