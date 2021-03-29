@@ -6,16 +6,16 @@
 void welcome();
 void pinverify(int pin);
 void mainmenu();
-void checkbalance(int balance);
-int moneydeposit(int balance);
-int moneywithdrawl(int balance);
+void checkbalance(int *amount);
+int moneydeposit(int *amount);
+int moneywithdrawl(int *amount);
 void exitmenu();
 void wrongnumber();
 
 int main()
 {
 	int pin;
-	int balance = 100000;
+	static balance = 100000;
 	int number;
 	int option;
 	welcome();
@@ -29,13 +29,13 @@ int main()
 	      switch(number)
 	      {
 	      	case 1:
-	      		checkbalance(balance);
+	      		checkbalance(&balance);
 	      		break;
 	      	case 2:
-	      		balance = moneydeposit(balance);
+	      		balance = moneydeposit(&balance);
 	      		break;
 	      	case 3:
-	      		balance = moneywithdrawl(balance);
+	      		balance = moneywithdrawl(&balance);
 	      		break;
 	      	case 4:
 	      		exitmenu();
@@ -94,41 +94,41 @@ void mainmenu()
 	printf("4.exit\n\n");
 }
 
-void checkbalance(int balance)
+void checkbalance(int *amount)
 {
-	printf("\n\n  your available balance is :rs%d\n\n",balance);
+	printf("\n\n  your available balance is :rs%d\n\n",*amount);
 }
 
-int moneydeposit(int balance)
+int moneydeposit(int *amount)
 {
 	int deposit;
-	printf("\n\nyour available balance is:%d",balance);
+	printf("\n\nyour available balance is:%d",*amount);
 	printf("\n\nenter amount to deposit:");
 	scanf("%d",&deposit);
 
-	balance = balance+deposit;
-	printf("your new balance is:%d\n\n",balance);
-	return balance;
+	*amount = *amount+deposit;
+	printf("your new balance is:%d\n\n",*amount);
+	return *amount;
 }
 
-int moneywithdrawl(int balance)
+int moneywithdrawl(int *amount)
 {
 	int withdrawl;
 	printf("enter amount to withdrawl:");
 	scanf("%d",&withdrawl);
 
-	if(balance>=withdrawl)
+	if(*amount>=withdrawl)
 	{
-		balance = balance - withdrawl;
+		*amount = *amount - withdrawl;
 		printf("\n\nsuccessful");
-		printf("\n\navailable balance in your account is:rs%d\n",balance);
-		return balance;
+		printf("\n\navailable balance in your account is:rs%d\n",*amount);
+		return *amount;
 	}
 	else
 	{
 		printf("\n\nyou dont have money\n\n");
 	}
-	return balance;
+	return *amount;
 
 }
 
@@ -137,7 +137,7 @@ void exitmenu()
 {
 	printf("\t\t\ttake your receipt\n\n");
 	printf("\t\tthank you for choosing our atm\n");
-	printf("\nyou only nsa bank for fast and secure service!!!\n");
+	printf("\nyse only nsa bank for fast and secure service!!!\n");
 }
 
 void wrongnumber()
